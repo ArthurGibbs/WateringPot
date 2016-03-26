@@ -17,16 +17,13 @@ int interval = 1000;
 void setup() {
   // put your setup code here, to run once:
   pinMode(detectPowerPin, OUTPUT);
-  pinMode(red, OUTPUT);
-  pinMode(green, OUTPUT);
-  pinMode(blue, OUTPUT);
+  pinMode(red,     OUTPUT);
+  pinMode(green,   OUTPUT);
+  pinMode(blue,    OUTPUT);
   pinMode(pumpPin, OUTPUT);  
-  
-  
-
-  
+ 
   Serial.begin(9600);
-}
+}rPot.ino
 
 void blink(int ont) {
  
@@ -77,11 +74,23 @@ void loop() {
 }
 
 int waterlevel(){
-    //set pullup resistors
-  digitalWrite(2, 1);
-  digitalWrite(3, 1);
-  digitalWrite(4, 1);
-  int l1 = analogRead(low);
-  
+  int thesh = 750;
+  digitalWrite(A1, 1);
+  digitalWrite(A2, 1);
+  digitalWrite(A32, 1);
+
+  if (analogRead(low) < thresh ){
+    return 0;   
+  }else if (analogRead(med) < thresh ){
+    return 1;  
+  }else if (analogRead(high) < thresh ){
+    return 2;  
+  }else if (analogRead(high) > thresh ){
+    return 3;  
+  }
+
+  digitalWrite(2, 0);
+  digitalWrite(3, 0);
+  digitalWrite(4, 0);  
 }
 
